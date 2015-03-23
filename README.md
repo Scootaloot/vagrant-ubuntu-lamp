@@ -56,7 +56,16 @@ _**Note:** If you use something other than the `master` branch in this repo, the
 
 The is the web root. Add your application files. e.g., WordPress, Drupal, Joomla, etc.
 
-#### Step 6: Learn to Use the Tools That I've Bundled
+#### Step 6: Understanding Environment Variables
+
+This LAMP stack comes preconfigured with a MySQL database and environment variables you can use in any PHP config. files.
+
+- `$_SERVER['MYSQL_DB_HOST']` This is the database host name. Defaults to `localhost`. Port is `3306` (default port).
+- `$_SERVER['MYSQL_DB_NAME']` This is the database name. Defaults to `vagrant`.
+- `$_SERVER['MYSQL_DB_USER']` This is the database username. Defaults to `vagrant`.
+- `$_SERVER['MYSQL_DB_PASSWORD']` This is the database password. Defaults to `vagrant`.
+
+#### Step 7: Learn to Use the Tools That I've Bundled
 
 A username/password is required to access each of these tools. It is always the same thing.
 
@@ -72,7 +81,7 @@ Available Tools (Using Any of These is Optional):
 - <https://ubuntu-lamp.vm/tools/apache-status/> Apache status page.
 - <https://ubuntu-lamp.vm/tools/apache-info/> Apache info page.
 
-#### Step 7: Tear it Down and Customize
+#### Step 8: Tear it Down and Customize
 
 ```bash
 $ cd ~/Projects/vagrant-ubuntu-lamp
@@ -83,4 +92,20 @@ In the project directory you'll find `bootstrap.bash`. At the top there are some
 
 ```bash
 $ vagrant up # Bring it back up after you are done customizing.
+```
+
+---
+
+### Hostname Tips & Tricks
+
+By default, the hostname will be: `http://ubuntu-lamp.vm`. You can change this by editing `config.vm.hostname` in `Vagrantfile`.
+
+However, you can avoid the extra step associated with the hostname altogether. Clone this repo into a directory that uses a `.vm` suffix. A quick look at `Vagrantfile` and you'll see that if your directory ends with `.vm` we use the directory basename as the VM hostname. Nice!
+
+For instance, I could run through the following steps and end up with `http://my.vm` and `https://my.vm` automatically.
+
+```bash
+$ git clone https://github.com/jaswsinc/vagrant-ubuntu-lamp my.vm # Cloning into a new `my.vm` directory.
+$ cd my.vm && vagrant up # Enter the directory and Vagrant up!
+# Now visit: `http://my.vm`
 ```
