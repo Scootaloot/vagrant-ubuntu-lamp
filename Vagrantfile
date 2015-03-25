@@ -1,6 +1,7 @@
 Vagrant.configure(2) do |config|
-  config.vm.box = "ubuntu/trusty64" # We are running Ubuntu in this project.
-  config.vm.provision :shell, path: "bootstrap.bash" # Tell Vagrant to run this script as part of the provisioning process.
+  config.vm.box = 'ubuntu/trusty64' # We are running Ubuntu in this project.
+  config.vm.provision :shell, path: 'bootstrap.bash', run: 'always'
+  # ↑ Tell Vagrant to run this script as part of the provisioning process.
 
   config.landrush.enabled = true # Enable the Landrush plugin.
   config.vm.hostname = 'ubuntu-lamp.vm'; # Force a specific host name.

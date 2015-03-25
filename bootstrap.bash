@@ -22,9 +22,15 @@ organizationalUnitName=$HOST_NAME
 emailAddress=vagrant@$HOST_NAME
 ";
 # Check if we already ran setup before.
+#  If so, just restart services and we're done!
 
 if [ -f /etc/vagrant/.bootstrap-complete ]; then
-	exit 0; # Nothing more to do here.
+
+	service mysql restart;
+	service php5-fpm restart;
+	service apache2 restart;
+	exit 0; # Nothing more.
+
 fi; # End conditional check.
 
 # Update package repositories.
